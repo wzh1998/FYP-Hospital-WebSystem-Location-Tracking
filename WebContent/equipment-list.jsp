@@ -343,7 +343,7 @@
           <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
 
           <!-- Add Equipment Button -->
-          <a class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#addAct">
+          <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#addEquipment">
             <span class="icon text-white-50">
               <i class="fas fa-arrow-right"></i>
             </span>
@@ -365,7 +365,7 @@
                       <th>Equipment Type</th>
                       <th>Update Time</th>
                       <th>Location</th>
-                      <th>Remaining Power</th>
+                      <th>Power Remaining</th>
                       <th>Department Belongs To</th>
                       <th>Operations</th>
                     </tr>
@@ -376,7 +376,7 @@
                       <th>Equipment Type</th>
                       <th>Update Time</th>
                       <th>Location</th>
-                      <th>Remaining Power</th>
+                      <th>Power Remaining</th>
                       <th>Department Belongs To</th>
                       <th>Operations</th>
                     </tr>
@@ -387,18 +387,42 @@
                       List<Equipment> equipments = EquipmentDAO.getAllEquipments();
                       for (Equipment equip : equipments) {
                     %>
+                    <!-- Delete equipment start (in for loop)-->
+                    <div id="<%="deleteEquipment_"+ equip.getEquipID() %>" class="modal fade">
+                    	<div class="modal-dialog modal-login">
+                    		<div class="modal-content">
+                    			<div class="modal-header">      
+                    				<h4 class="modal-title">Are you absolutely sure?</h4>
+                    				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    			</div>
+                    			<div class="modal-body">
+                    				<form method="post" action="delete-equipment.jsp">
+                    					<div class="form-group">
+                    						<label>Equipment ID:</label>
+                    						<input type="text" name="EquipID" class="form-control" readonly="true" value="<%=equip.getEquipID() %>" placeholder="<%=equip.getEquipID() %>">
+                    					</div>
+                    					<div>
+                    						This action <strong>cannot</strong> be undone. This will remove the record of the device <strong><%=equip.getEquipID() %></strong>
+                    						You may lose track of this equipment unless you import it into the system again manually.
+                    					</div>
+                    					<hr>
+                    					<div class="form-group"><input type="submit" value="delete this equipment from system" class="btn btn-primary btn-block btn-lg" style="background:#CD2636; color:#FFF">
+                    					</div>
+                    					<div class="clearfix"></div>
+                    				</form>       
+                    			</div>
+                    		</div>
+                    	</div>
+                    </div>
+                    <!-- Delete equipment end (in for loop)-->
+
                     <tr>
                       <td><%=equip.getEquipID() %></td>
                       <td><%=equip.getEquipType() %></td>
                       <td><%=equip.getUpdateTime() %></td>
                       <td><%=equip.getLocation() %></td>
-                      <td><%=equip.getPower() %></td>
-                      <td><%=equip.getDeptOwns() %></td>
                       <td>
-                        <a href="#" class="btn btn-info btn-circle btn-sm">
-                          <i class="fas fa-info-circle"></i>
-                        </a>
-                        <!-- Java code start. Determine whether the equipment can be lent base on their original owner and department in use. -->
+                      	<!-- Java code start. Determine whether the equipment can be lent base on their original owner and department in use. -->
                         <%
                           if(equip.getPower() > 20) {
                         %>
@@ -414,6 +438,16 @@
                         <%}%>
                         <!-- Java code end here -->
                       </td>
+                      <td><%=equip.getDeptOwns() %></td>
+                      <td>
+                        <a href="#" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#infoEquipment">
+                          <i class="fas fa-info-circle"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="<%="#deleteEquipment_"+ equip.getEquipID() %>">
+                        	<i class="fas fa-trash"></i>
+                        </a>
+                      </td>
+
                     </tr>
 
                     <%
@@ -473,7 +507,7 @@
   </div>
 
   <!--- Adding equipment start  --->
-  <div id="addAct" class="modal fade">
+  <div id="addEquipment" class="modal fade">
     <div class="modal-dialog modal-login">
         <div class="modal-content">
             <div class="modal-header">      
@@ -500,7 +534,7 @@
                             <option value="Coagulometer"> Coagulometer </option>
                             <option value="Centrifuge"> Centrifuge </option>
                             <option value="Refrigerator"> Refrigerator </option>
-                            option value="Autoclave"> Autoclave </option>
+                            <option value="Autoclave"> Autoclave </option>
                             <option value="Infusion Fluid Holder"> Infusion Fluid Holder </option>
                             <option value="Surgical Light Mobile"> Surgical Light Mobile </option>
                             <option value="Stretcher"> Stretcher </option>
@@ -525,6 +559,36 @@
 </div>
 <!--- Adding equipment end  --->
 
+<!-- Check equipment detailed info start -->
+<div id="infoEquipment" class="modal fade">
+    <div class="modal-dialog modal-login">
+        <div class="modal-content">
+            <div class="modal-header">      
+                <h4 class="modal-title">Adding New Equipment</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="#">
+                    <div class="form-group">
+                        <label>Equipent Info</label>
+                        <input type="text" name="EquipInfoID" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Equipment Info</label>
+                        <input type="text" name="EquipInfoType" class="form-control" required>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </form>       
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Check equipment detailed info end -->
+
+
+
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -542,19 +606,6 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
 
-  <!-- DDDDBUG -->
-  <!-- plugin JS -->
-  <!-- <script src="plugin/pluginson3step.js"></script>  -->
-  <!-- <script src="plugin/bootstrap.min.js"></script> -->
-  <!-- <script src='plugin/bootstrap-datepicker.min.js'></script> -->
-  <!-- <script src="plugin/sticky.js"></script>  -->
-  <!-- slider revolution  -->
-  <!-- <script src="rs-plugin/js/jquery.themepunch.tools.min.js"></script> -->
-  <!-- <script src="rs-plugin/js/jquery.themepunch.revolution.min.js"></script> -->
-  <!-- on3step JS -->
-  <!-- <script src="js/on3step.js"></script> -->
-  <!-- <script src="js/plugin-set.js"></script> -->
-  <!-- DDDBUG END -->
 </body>
 
 </html>

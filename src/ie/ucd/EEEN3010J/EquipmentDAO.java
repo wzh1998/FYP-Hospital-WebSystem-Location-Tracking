@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import ie.ucd.EEEN3010J.JDBCTool;
+
 
 public class EquipmentDAO {
 	
@@ -121,4 +123,21 @@ public class EquipmentDAO {
 		}
 		return false;
 	}
+	
+	public static boolean deleteEquipment(String equipID) {
+		try {
+			Connection conn = JDBCTool.getConnection();
+			Statement st = conn.createStatement();	
+			int rs = st.executeUpdate("DELETE FROM Equipments WHERE equipID='" + equipID + "';");
+			
+			st.close();
+			conn.close();
+			
+			return (rs==0) ? false : true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
+
