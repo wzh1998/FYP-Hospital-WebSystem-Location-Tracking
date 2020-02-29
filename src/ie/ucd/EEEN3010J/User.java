@@ -3,38 +3,38 @@ package ie.ucd.EEEN3010J;
 public class User {
 	
 	
-	private String username;
-	private String password;
-	private String email;
+	private String usrID;
+	private String usrPwd;
+	private String usrName;
+	private String usrTel;
+	private String usrEmail;
+	private String usrDept;
 	
 	
-	public User(String username, String password, String email) {
+	public User(String usrID, String usrPwd, String usrName, String usrTel, String usrEmail,String usrDept) {
 		super();
-		this.username = username;
-		this.password = password;
-		this.email = email;
+		this.usrID = usrID;
+		this.usrPwd = usrPwd;
+		this.usrName = usrName;
+		this.usrTel = usrTel;
+		this.usrEmail = usrEmail;
+		this.usrDept = usrDept;
 	}
 	
-	
-	public String getUsername() {
-		return username;
+	public String getUsrID() {
+		return usrID;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public String getUsrName() {
+		return usrName;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
+	public String getUsrTel() {
+		return usrTel;
 	}
 	
-	
-
+	public String getUsrEmail() {
+		return usrEmail;
+	}
+	public String getusrDept() {
+		return usrDept;
+	}
 }

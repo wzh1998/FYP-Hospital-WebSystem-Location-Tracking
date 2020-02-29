@@ -51,64 +51,6 @@ public class EquipmentDAO {
 		return equipments;
 	}
 	
-//	public static Actuator getActuatorByID(int aid) {
-//		try {
-//			Connection conn = JDBCTool.getConnection();
-//			Statement st = conn.createStatement();	
-//			ResultSet rs = st.executeQuery("SELECT * FROM Actuators WHERE ActID=" + aid);
-//			rs.next();
-//			
-//			int ActID = rs.getInt("ActID");
-//			String ActName = rs.getString("ActName");
-//			int ActState = rs.getInt("ActState");
-//			Actuator act = new Actuator(ActID, ActName, ActState);
-//				
-//			rs.close();
-//			st.close();
-//			conn.close();
-//	
-//			return act;
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}		
-//	return null;
-//	}
-//	
-//
-//	public static boolean deleteActuatorByID(int aid) {
-//		try {
-//			Connection conn = JDBCTool.getConnection();
-//			Statement st = conn.createStatement();	
-//			int rs = st.executeUpdate("DELETE FROM Actuators WHERE ActID=" + aid);
-//			
-//			st.close();
-//			conn.close();
-//			
-//			return (rs==0) ? false : true;
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return false;
-//	}
-//	
-//
-//	public static boolean updateActuator(Actuator act) {
-//		try {
-//			Connection conn = JDBCTool.getConnection();
-//			Statement st = conn.createStatement();	
-//			System.out.println("UPDATE Actuators SET ActName='"+ act.getActName() + "', ActState=" + act.getActState() + " WHERE ActID=" + act.getActID() + ";");
-//			int rs = st.executeUpdate("UPDATE Actuators SET ActName='"+ act.getActName() + "', ActState=" + act.getActState() + " WHERE ActID=" + act.getActID() + ";" );
-//			
-//			st.close();
-//			conn.close();
-//			return (rs==0) ? false : true;
-//		} catch (SQLException exception) {
-//			exception.printStackTrace();
-//		}
-//		return false;
-//	}
-//	
-//
 	public static boolean insertEquipment(String equipID, String equipType, String deptOwns) {
 		try {
 			Connection conn = JDBCTool.getConnection();

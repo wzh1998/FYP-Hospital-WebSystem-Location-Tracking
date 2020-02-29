@@ -53,5 +53,4 @@ public class Equipment {
 	public String getDeptInUse() {
 		return deptInUse;
 	}
-	
 }

@@ -8,31 +8,32 @@ import java.sql.Statement;
 
 public class UserDAO {
 	
-	public static User login(String username, String password) {
+	public static User login(String ID, String password) {
 		Connection conn = null;
 		
 		try {
 			conn = JDBCTool.getConnection();
 		
-			String information = "SELECT * FROM Users WHERE FName=? AND Password=?";
+			String information = "SELECT * FROM Users WHERE UsrID=? AND UsrPwd=?";
 			
 			PreparedStatement ps = conn.prepareStatement(information);
 			
-			ps.setString(1, username);
+			ps.setString(1, ID);
 			ps.setString(2, password);
 			ResultSet rs = ps.executeQuery();
-			
 		
 			if(rs.next()) {
 				
-				String un = rs.getString("FName");
-				String p = rs.getString("Password");
-				String email = rs.getString("Mail");
-				User u = new User(un,p,email);
+				String uID = rs.getString("UsrID");
+				String uPwd = rs.getString("UsrPwd");
+				String uName = rs.getString("UsrName");
+				String uTel = rs.getString("Telephone");
+				String uEmail = rs.getString("Email");
+				String uDept = rs.getString("DeptIn");
+				
+				User u = new User(uID,uPwd,uName,uTel,uEmail,uDept);
 				return u;
 			}
-			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -2,6 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ page import="ie.ucd.EEEN3010J.*" %>
 <%@ page import="java.util.List" %>
+<script>
+function alertFailed(){
+	alert("Please login first!");
+	window.document.location.href="index.html";
+}
+</script>
+<% 
+if(session.getAttribute("user") == null) {
+	response.sendRedirect("index.html"); 
+}
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +24,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>FYP-HETS - Equipment List</title>
+  <title>Equipment List | HETS</title>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -28,7 +39,7 @@
 </head>
 
 <body id="page-top">
-
+  
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -36,11 +47,11 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="overview.jsp">
+        <div class="sidebar-brand-icon">
+          <img  src="img/UCDlogo.png" width="34" height="49" alt="">
+        </div>       
+        <div class="sidebar-brand-text mx-3">FYP-HETS <sup>BDIC</sup></div>
       </a>
 
       <!-- Divider -->
@@ -48,9 +59,9 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="overview.jsp">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>Overview</span></a>
       </li>
 
       <!-- Divider -->
@@ -58,83 +69,33 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
+        Equipment
       </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item active">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="equipment-list.jsp">
           <i class="fas fa-fw fa-table"></i>
-          <span>Equipment List</span></a>
+          <span>Find & Manage Equipment</span></a>
       </li>
 
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBR" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Borrow / Return</span>
+        </a>
+        <div id="collapseBR" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <!-- <h6 class="collapse-header">Borrow From Depart.</h6> -->
+            <a class="collapse-item" href="borrow-equipment.jsp">Borrow Equipments</a>
+            <div class="collapse-divider"></div>
+            <!-- <h6 class="collapse-header">Return To Depart.</h6> -->
+            <a class="collapse-item" href="return-equipment.jsp">Return Equipments</a>
+          </div>
+        </div>
+      </li>
+      
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -195,122 +156,15 @@
               </div>
             </li>
 
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
-              <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Alerts Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">Feb 19, 2020</div>
-                    <span class="font-weight-bold">A device in the department has just been loaned out</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">Feb 7, 2019</div>
-                    Device has been returned to your department!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">Feb 2, 2020</div>
-                    Power Alert: One or More device in your department is in LOW POWER!
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
-            </li>
-
-            <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
-                  Message Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Hello from Jingxiang.</div>
-                    <div class="small text-gray-500">Jingxiang Sun · 1h</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Hello from He.</div>
-                    <div class="small text-gray-500">He Wang · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I am your supervisor</div>
-                    <div class="small text-gray-500">Dr. Soumya · 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Hello from Meichen.</div>
-                    <div class="small text-gray-500">Meichen Lu · 3d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-              </div>
-            </li>
-
-            <div class="topbar-divider d-none d-sm-block"></div>
-
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Zihao Wang</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%User u = (User) session.getAttribute("user"); %><%=u==null ? "null" : u.getUsrName() %></span>
                 <img class="img-profile rounded-circle" src="img/logo.png">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <!-- <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
@@ -322,7 +176,7 @@
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                   Activity Log
                 </a>
-                <div class="dropdown-divider"></div>
+                <div class="dropdown-divider"></div> -->
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
@@ -339,9 +193,21 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
-
+          <h1 class="h3 mb-2 text-gray-800">Find & Manage Equipment</h1>
+          <p class="mb-4">
+            Equipment List allows staffs to check the information of each equipment, including ID, type, current location, department that equipment belongs to, etc.
+            You can track the <strong>current location</strong> of each equipment in this page. You are able to access the <strong>latest location</strong> even if the tracking device run out of power.
+            You are able to check the remaining battery and you will get an warning when the power is below 20%.
+            Besides, you can <strong>add</strong> new equipment or <strong>delete</strong> (if you are admin) equipment in this system. 
+            
+            
+          </p>
+          <p class="mb-4">
+            <strong>Please note:</strong>
+            <br />
+            &bull; When you need to add a new equipment, please first import the ID, type (you can find these information from the label on physical device), then check if the record is shown on the table below. If you find the record with update time '<strong>1970-01-01 08:00:00</strong>' and location '<strong>null</strong>', your equipment is added successfully. After that, you should turn on the physical device such that the time & location will be updated automatically.
+          </p>
+      <hr>
           <!-- Add Equipment Button -->
           <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#addEquipment">
             <span class="icon text-white-50">
@@ -366,7 +232,7 @@
                       <th>Update Time</th>
                       <th>Location</th>
                       <th>Power Remaining</th>
-                      <th>Department Belongs To</th>
+                      <th>Department Owns</th>
                       <th>Operations</th>
                     </tr>
                   </thead>
@@ -377,7 +243,7 @@
                       <th>Update Time</th>
                       <th>Location</th>
                       <th>Power Remaining</th>
-                      <th>Department Belongs To</th>
+                      <th>Department Owns</th>
                       <th>Operations</th>
                     </tr>
                   </tfoot>
@@ -387,32 +253,82 @@
                       List<Equipment> equipments = EquipmentDAO.getAllEquipments();
                       for (Equipment equip : equipments) {
                     %>
+                    <!-- Check equipment detailed info start -->
+                    <div id="<%="EquipmentInfo_"+ equip.getEquipID() %>" class="modal fade">
+                      <div class="modal-dialog modal-login">
+                        <div class="modal-content">
+                          <div class="modal-header">      
+                            <h4 class="modal-title">Equipment Information</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          </div>
+                          <div class="modal-body">
+                            <form method="post" action="#">
+                              <div class="form-group">
+                                <label>Equipent Info</label>
+                                <input type="text" name="EquipInfoID" class="form-control" readonly="true" value="<%=equip.getEquipID() %>" placeholder="<%=equip.getEquipID() %>">
+                              </div>
+                              <div class="form-group">
+                                <label>Equipment Type</label>
+                                <input type="text" name="EquipInfoType" class="form-control" readonly="true" value="<%=equip.getEquipType() %>" placeholder="<%=equip.getEquipType() %>">
+                              </div>
+                              <div class="form-group">
+                                <label>Location</label>
+                                <input type="text" name="EquipInfoLocation" class="form-control" readonly="true" value="<%=equip.getLocation() %>" placeholder="<%=equip.getLocation() %>">
+                              </div>
+                              <div class="form-group">
+                                <label>Update Time</label>
+                                <input type="text" name="EquipInfoUT" class="form-control" readonly="true" value="<%=equip.getUpdateTime() %>" placeholder="<%=equip.getUpdateTime() %>">
+                              </div>
+                              <div class="form-group">
+                                <label>Remaining Power</label>
+                                <input type="text" name="EquipInfoRP" class="form-control" readonly="true" value="<%=equip.getPower() %> %" placeholder="<%=equip.getPower() %> %">
+                              </div>
+                              <div class="form-group">
+                                <label>Power Alarm</label>
+                                <input type="text" name="EquipInfoPA" class="form-control" readonly="true" value="<%=equip.isLowPow() %>" placeholder="<%=equip.isLowPow() %>">
+                              </div>
+                              <div class="form-group">
+                                <label>Department Code (Owns)</label>
+                                <input type="text" name="EquipInfoDCO" class="form-control" readonly="true" value="<%=equip.getDeptOwns() %>" placeholder="<%=equip.getDeptOwns() %>">
+                              </div>
+                              <div class="form-group">
+                                <label>Department Code (In Use)</label>
+                                <input type="text" name="EquipInfoDCIU" class="form-control" readonly="true" value="<%=equip.getDeptInUse() %>" placeholder="<%=equip.getDeptInUse() %>">
+                              </div>
+                              <div class="clearfix"></div>
+                            </form>       
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Check equipment detailed info end -->
+
                     <!-- Delete equipment start (in for loop)-->
                     <div id="<%="deleteEquipment_"+ equip.getEquipID() %>" class="modal fade">
-                    	<div class="modal-dialog modal-login">
-                    		<div class="modal-content">
-                    			<div class="modal-header">      
-                    				<h4 class="modal-title">Are you absolutely sure?</h4>
-                    				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    			</div>
-                    			<div class="modal-body">
-                    				<form method="post" action="delete-equipment.jsp">
-                    					<div class="form-group">
-                    						<label>Equipment ID:</label>
-                    						<input type="text" name="EquipID" class="form-control" readonly="true" value="<%=equip.getEquipID() %>" placeholder="<%=equip.getEquipID() %>">
-                    					</div>
-                    					<div>
-                    						This action <strong>cannot</strong> be undone. This will remove the record of the device <strong><%=equip.getEquipID() %></strong>
-                    						You may lose track of this equipment unless you import it into the system again manually.
-                    					</div>
-                    					<hr>
-                    					<div class="form-group"><input type="submit" value="delete this equipment from system" class="btn btn-primary btn-block btn-lg" style="background:#CD2636; color:#FFF">
-                    					</div>
-                    					<div class="clearfix"></div>
-                    				</form>       
-                    			</div>
-                    		</div>
-                    	</div>
+                      <div class="modal-dialog modal-login">
+                        <div class="modal-content">
+                          <div class="modal-header">      
+                            <h4 class="modal-title">Are you absolutely sure?</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          </div>
+                          <div class="modal-body">
+                            <form method="post" action="delete-equipment.jsp">
+                              <div class="form-group">
+                                <label>Equipment ID:</label>
+                                <input type="text" name="EquipID" class="form-control" readonly="true" value="<%=equip.getEquipID() %>" placeholder="<%=equip.getEquipID() %>">
+                              </div>
+                              <div>
+                                This action <strong>cannot</strong> be undone. This will remove the record of the device <strong><%=equip.getEquipID() %></strong>
+                                You may lose track of this equipment unless you import it into the system again manually.
+                              </div>
+                              <hr>
+                              <div class="form-group"><input type="submit" value="delete this equipment from system" class="btn btn-primary btn-block btn-lg" style="background:#CD2636; color:#FFF">
+                              </div>
+                              <div class="clearfix"></div>
+                            </form>       
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <!-- Delete equipment end (in for loop)-->
 
@@ -422,7 +338,7 @@
                       <td><%=equip.getUpdateTime() %></td>
                       <td><%=equip.getLocation() %></td>
                       <td>
-                      	<!-- Java code start. Determine whether the equipment can be lent base on their original owner and department in use. -->
+                        <!-- Java code start. Determine whether the equipment can be lent base on their original owner and department in use. -->
                         <%
                           if(equip.getPower() > 20) {
                         %>
@@ -440,11 +356,11 @@
                       </td>
                       <td><%=equip.getDeptOwns() %></td>
                       <td>
-                        <a href="#" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#infoEquipment">
+                        <a href="#" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="<%="#EquipmentInfo_"+ equip.getEquipID() %>">
                           <i class="fas fa-info-circle"></i>
                         </a>
                         <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="<%="#deleteEquipment_"+ equip.getEquipID() %>">
-                        	<i class="fas fa-trash"></i>
+                          <i class="fas fa-trash"></i>
                         </a>
                       </td>
 
@@ -470,7 +386,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Copyright &copy; BDIC FYP-12 HETS System 2020</span>
           </div>
         </div>
       </footer>
@@ -500,7 +416,7 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="logout.jsp">Logout</a>
         </div>
       </div>
     </div>
@@ -559,36 +475,6 @@
 </div>
 <!--- Adding equipment end  --->
 
-<!-- Check equipment detailed info start -->
-<div id="infoEquipment" class="modal fade">
-    <div class="modal-dialog modal-login">
-        <div class="modal-content">
-            <div class="modal-header">      
-                <h4 class="modal-title">Adding New Equipment</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form method="post" action="#">
-                    <div class="form-group">
-                        <label>Equipent Info</label>
-                        <input type="text" name="EquipInfoID" class="form-control" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Equipment Info</label>
-                        <input type="text" name="EquipInfoType" class="form-control" required>
-                    </div>
-
-                    <div class="clearfix"></div>
-                </form>       
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Check equipment detailed info end -->
-
-
-
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -609,6 +495,5 @@
 </body>
 
 </html>
-
 
 
