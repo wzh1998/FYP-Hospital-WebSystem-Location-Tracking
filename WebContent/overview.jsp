@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="ie.ucd.EEEN3010J.User" %>
+<%@ page import="ie.ucd.EEEN3010J.UserDAO" %>
+<%@ page import="java.util.List" %>
+<% 
+if(session.getAttribute("user") == null) {
+	response.sendRedirect("index.html"); 
+}
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +18,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Blank</title>
+  <title>Overview | HETS</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -175,7 +183,92 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+          </div>
+          
+          <!-- Content Row -->
+          <div class="row">
+
+            <!-- Content Column -->
+            <div class="col-lg-6 mb-4">
+
+              <!-- Project Card Example -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+                </div>
+                <div class="card-body">
+                  <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span></h4>
+                  <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Approach -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
+                </div>
+                <div class="card-body">
+                  <p>This websystem is implemented using Tomcat + Mysql + JSP. //TODO: Write more about DB design (ER diagram, normalisation, etc.)</p>
+                  <p><strong>Basic Goals:</strong> 
+                  <br/>• Build a low energy IoT indoor location-based system for hospital equipment
+                  <br/>• Develop an API to receive and store the location of each hospital device
+                  <br/>• Admin interface to register and de-register hospital equipment, as well as staff, with a role-based system.
+                  <br/>• Security for the IoT tracking and API
+                  <br/><br/><strong>Bonus Tasks:</strong>
+                  <br/>• When Hospital Equipment is not registering (example power is depleted), the system can track previous locations to allow staff to have a general area for the current location
+                  <br/>• Smart alerts for low power, to perhaps avoid Bonus Task, 1.
+                  <br/>• Additional security for specific high-risk equipment, for example, when a staff member searches for the device, they are issued with a code to physically unlock/undock the device and this is logged (perhaps using NFC).
+                  </p>
+                  <p class="mb-0">//TODO: Write some theoretical knowledge of indoor positioning here</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 mb-4">
+
+              <!-- Illustrations -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                </div>
+                <div class="card-body">
+                  <div class="text-center">
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
+                  </div>
+                  <p>Equipment in hospitals are costly and needed on a regular basis. When equipment fails or is required in another ward/section, it is often used/fixed but never returned to its original location. This issue is compounded when staff shifts end as the new cohort is unaware of the borrowed equipment on the ward/section. This becomes a significant issue when the ward/section for who the equipment was borrowed requires the equipment. This can lead to time spent looking for the equipment, a reduction in the quality of patient care or in the worst case, a negative effect on patient outcomes.</p><p>A solution to track the location of hospital equipment in 3D space in an indoor setting, using a low energy solution would allow staff to log onto a web-based system and track the location of the equipment saving time and perhaps lives. </p>
+                  <p>
+                  	<strong>Techniques:</strong>
+                  	<br/>• IoT, RFID/Bluetooth/WIFI (not decide yet), ECS cloud hosting (from Alibaba cloud)
+                  	<br/>• Java, JSP
+                  	<br/>// TODO: Add more techniques here.
+                  </p>
+                  <a target="_blank" rel="nofollow" href="https://github.com/wzh1998/FYP-Hospital-WebSystem-Location-Tracking">View Detailed Info on Github &rarr;</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
 
         </div>
         <!-- /.container-fluid -->
@@ -217,7 +310,7 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="index.html">Logout</a>
         </div>
       </div>
     </div>
@@ -236,5 +329,7 @@
 </body>
 
 </html>
+
+
 
     

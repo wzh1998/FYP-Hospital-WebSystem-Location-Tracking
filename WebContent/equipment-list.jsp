@@ -2,12 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="ie.ucd.EEEN3010J.*" %>
 <%@ page import="java.util.List" %>
-<script>
-function alertFailed(){
-	alert("Please login first!");
-	window.document.location.href="index.html";
-}
-</script>
+
 <% 
 if(session.getAttribute("user") == null) {
 	response.sendRedirect("index.html"); 
@@ -331,7 +326,6 @@ if(session.getAttribute("user") == null) {
                       </div>
                     </div>
                     <!-- Delete equipment end (in for loop)-->
-
                     <tr>
                       <td><%=equip.getEquipID() %></td>
                       <td><%=equip.getEquipType() %></td>
@@ -343,13 +337,15 @@ if(session.getAttribute("user") == null) {
                           if(equip.getPower() > 20) {
                         %>
                         <a href="#" class="btn btn-success btn-circle btn-sm">
-                          <i class="fas fa-check"></i>
+                          <!-- <i class="fas fa-check"></i> -->
+                          <%=equip.getPower() %>
                         </a>
                         <%
                           } else {
                         %>
                         <a href="#" class="btn btn-warning btn-circle btn-sm">
-                          <i class="fas fa-exclamation-triangle"></i>
+                          <!-- <i class="fas fa-exclamation-triangle"></i> -->
+                          <%=equip.getPower() %>
                         </a>
                         <%}%>
                         <!-- Java code end here -->
@@ -365,7 +361,6 @@ if(session.getAttribute("user") == null) {
                       </td>
 
                     </tr>
-
                     <%
                       }
                     %>
@@ -493,7 +488,6 @@ if(session.getAttribute("user") == null) {
   <script src="js/demo/datatables-demo.js"></script>
 
 </body>
-
 </html>
 
 
