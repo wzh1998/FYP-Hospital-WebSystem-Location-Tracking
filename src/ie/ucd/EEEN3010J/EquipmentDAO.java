@@ -81,5 +81,25 @@ public class EquipmentDAO {
 		}
 		return false;
 	}
+	public static int[] getEquipNum() {
+		int[] equipNum = {0,0,0,0,0,0,0,0,0,0};
+		try {
+			Connection conn = JDBCTool.getConnection();
+			Statement st = conn.createStatement();
+			
+			ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM Equipments as e GROUP BY e.DeptOwns ORDER BY e.DeptOwns;");
+			for(int i = 0;rs.next();i++) {
+				equipNum[i] = rs.getInt("COUNT(*)");
+			}
+			
+			rs.close();
+			st.close();
+			conn.close();	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return equipNum;
+	}
+	
 }
 

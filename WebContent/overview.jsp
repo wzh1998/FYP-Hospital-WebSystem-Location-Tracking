@@ -1,3 +1,4 @@
+<%@page import="ie.ucd.EEEN3010J.EquipmentDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="ie.ucd.EEEN3010J.User" %>
@@ -197,28 +198,41 @@ if(session.getAttribute("user") == null) {
               <!-- Project Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Equipment Number Hold By Each Department</h6>
                 </div>
                 <div class="card-body">
-                  <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4>
+                  <%int[] equipNum = new int[10]; equipNum = EquipmentDAO.getEquipNum(); %>
+                  <h4 class="small font-weight-bold">Depart. of Emergency <span class="float-right"><%=equipNum[0] %></span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: <%=equipNum[0] %>%" aria-valuenow="<%=equipNum[0] %>" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4>
+                  <h4 class="small font-weight-bold">Depart. of Surgery <span class="float-right"><%=equipNum[1] %></span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: <%=equipNum[1] %>%" aria-valuenow="<%=equipNum[1] %>" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4>
+                  <h4 class="small font-weight-bold">Depart. of Neurology <span class="float-right"><%=equipNum[2] %></span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar" style="width: <%=equipNum[2] %>%" aria-valuenow="<%=equipNum[2] %>" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4>
+                  <h4 class="small font-weight-bold">Depart. of Pediatrics <span class="float-right"><%=equipNum[3] %></span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-info" role="progressbar" style="width: <%=equipNum[3] %>%" aria-valuenow="<%=equipNum[3] %>" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span></h4>
-                  <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                  <h4 class="small font-weight-bold">Depart. of Psychiatry <span class="float-right"><%=equipNum[4] %></span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: <%=equipNum[5] %>%" aria-valuenow="<%=equipNum[5] %>" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h4 class="small font-weight-bold">Depart. of Anatomical <span class="float-right"><%=equipNum[6] %></span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: <%=equipNum[6] %>%" aria-valuenow="<%=equipNum[6] %>" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h4 class="small font-weight-bold">Depart. of Radiology <span class="float-right"><%=equipNum[7] %></span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: <%=equipNum[7] %>%" aria-valuenow="<%=equipNum[7] %>" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <h4 class="small font-weight-bold">Depart. of Chinese Medicine <span class="float-right"><%=equipNum[8] %></span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: <%=equipNum[8] %>%" aria-valuenow="<%=equipNum[8] %>" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
@@ -254,12 +268,12 @@ if(session.getAttribute("user") == null) {
                 </div>
                 <div class="card-body">
                   <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/introfig.png" alt="">
                   </div>
                   <p>Equipment in hospitals are costly and needed on a regular basis. When equipment fails or is required in another ward/section, it is often used/fixed but never returned to its original location. This issue is compounded when staff shifts end as the new cohort is unaware of the borrowed equipment on the ward/section. This becomes a significant issue when the ward/section for who the equipment was borrowed requires the equipment. This can lead to time spent looking for the equipment, a reduction in the quality of patient care or in the worst case, a negative effect on patient outcomes.</p><p>A solution to track the location of hospital equipment in 3D space in an indoor setting, using a low energy solution would allow staff to log onto a web-based system and track the location of the equipment saving time and perhaps lives. </p>
                   <p>
                   	<strong>Techniques:</strong>
-                  	<br/>• IoT, RFID/Bluetooth/WIFI (not decide yet), ECS cloud hosting (from Alibaba cloud)
+                  	<br/>• IoT, RFID/Bluetooth/WIFI (not decide yet), ECS cloud hosting (from Alibaba cloud), Mysql
                   	<br/>• Java, JSP
                   	<br/>// TODO: Add more techniques here.
                   </p>
