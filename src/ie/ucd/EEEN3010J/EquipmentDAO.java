@@ -87,9 +87,10 @@ public class EquipmentDAO {
 			Connection conn = JDBCTool.getConnection();
 			Statement st = conn.createStatement();
 			
-			ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM Equipments as e GROUP BY e.DeptOwns ORDER BY e.DeptOwns;");
+			ResultSet rs = st.executeQuery("SELECT COUNT(Equipments.DeptOwns) AS EquipNum FROM Departments LEFT JOIN Equipments ON Departments.DeptCode = Equipments.DeptOwns GROUP BY Departments.DeptCode ORDER BY Departments.DeptCode;");
 			for(int i = 0;rs.next();i++) {
-				equipNum[i] = rs.getInt("COUNT(*)");
+				
+				equipNum[i] = rs.getInt("EquipNum");
 			}
 			
 			rs.close();

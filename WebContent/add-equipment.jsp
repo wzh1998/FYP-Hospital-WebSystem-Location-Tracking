@@ -12,7 +12,7 @@ function alertSuccess(){
 	window.document.location.href="equipment-list.jsp";
 }
 function alertFailed(){
-	alert("Failed! Department code does not exists.");
+	alert("Failed! Duplicate equipment ID.");
 	window.document.location.href="equipment-list.jsp";
 }
 </script>

@@ -83,10 +83,10 @@ if(session.getAttribute("user") == null) {
         <div id="collapseBR" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">Borrow From Depart.</h6> -->
-            <a class="collapse-item" href="borrow-equipment.jsp">Borrow Equipments</a>
+            <a class="collapse-item" href="#">Borrow Equipments</a>
             <div class="collapse-divider"></div>
             <!-- <h6 class="collapse-header">Return To Depart.</h6> -->
-            <a class="collapse-item" href="return-equipment.jsp">Return Equipments</a>
+            <a class="collapse-item" href="#">Return Equipments</a>
           </div>
         </div>
       </li>
@@ -155,7 +155,7 @@ if(session.getAttribute("user") == null) {
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%User u = (User) session.getAttribute("user"); %><%=u==null ? "null" : u.getUsrName() %></span>
-                <img class="img-profile rounded-circle" src="img/logo.png">
+                <img class="img-profile rounded-circle" src="img/users/<%=u==null ? "logo" : u.getUsrName() %>.png">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -458,7 +458,19 @@ if(session.getAttribute("user") == null) {
                   </div>
                     <div class="form-group">
                         <label>Department Code This Equipment Belongs To:</label>
-                        <input type="text" name="DeptOwns" class="form-control" required>
+                        <select name="DeptOwns" class="form-control">
+                            <!-- <option disabled="" selected=""></option> -->
+                            <option value="Not Specified">  </option>
+                            <option value="D000"> D000 - Administrative Unit </option>
+                            <option value="D001"> D001 - Department of Emergency </option>
+                            <option value="D002"> D002 - Department of Surgery </option>
+                            <option value="D003"> D003 - Department of Neurology </option>
+                            <option value="D004"> D004 - Department of Pediatrics </option>
+                            <option value="D005"> D005 - Department of Psychiatry </option>
+                            <option value="D006"> D006 - Department of Anatomical </option>
+                            <option value="D007"> D007 - Department of Radiology </option>
+                            <option value="D008"> D008 - Department of Chinese Medicine </option>
+                        </select>
                     </div>
 
                     <div class="form-group"><input type="submit" value="Submit" class="btn btn-primary btn-block btn-lg"></div>

@@ -79,10 +79,10 @@ if(session.getAttribute("user") == null) {
         <div id="collapseBR" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">Borrow From Depart.</h6> -->
-            <a class="collapse-item" href="borrow-equipment.jsp">Borrow Equipments</a>
+            <a class="collapse-item" href="#">Borrow Equipments</a>
             <div class="collapse-divider"></div>
             <!-- <h6 class="collapse-header">Return To Depart.</h6> -->
-            <a class="collapse-item" href="return-equipment.jsp">Return Equipments</a>
+            <a class="collapse-item" href="#">Return Equipments</a>
           </div>
         </div>
       </li>
@@ -151,7 +151,7 @@ if(session.getAttribute("user") == null) {
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%User u = (User) session.getAttribute("user"); %><%=u==null ? "null" : u.getUsrName() %></span>
-                <img class="img-profile rounded-circle" src="img/logo.png">
+                <img class="img-profile rounded-circle" src="img/users/<%=u==null ? "logo" : u.getUsrName() %>.png">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -202,23 +202,23 @@ if(session.getAttribute("user") == null) {
                 </div>
                 <div class="card-body">
                   <%int[] equipNum = new int[10]; equipNum = EquipmentDAO.getEquipNum(); %>
-                  <h4 class="small font-weight-bold">Depart. of Emergency <span class="float-right"><%=equipNum[0] %></span></h4>
+                  <h4 class="small font-weight-bold">Depart. of Emergency <span class="float-right"><%=equipNum[1] %></span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: <%=equipNum[0] %>%" aria-valuenow="<%=equipNum[0] %>" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: <%=equipNum[1] %>%" aria-valuenow="<%=equipNum[1] %>" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <h4 class="small font-weight-bold">Depart. of Surgery <span class="float-right"><%=equipNum[1] %></span></h4>
+                  <h4 class="small font-weight-bold">Depart. of Surgery <span class="float-right"><%=equipNum[2] %></span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: <%=equipNum[1] %>%" aria-valuenow="<%=equipNum[1] %>" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: <%=equipNum[2] %>%" aria-valuenow="<%=equipNum[2] %>" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <h4 class="small font-weight-bold">Depart. of Neurology <span class="float-right"><%=equipNum[2] %></span></h4>
+                  <h4 class="small font-weight-bold">Depart. of Neurology <span class="float-right"><%=equipNum[3] %></span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: <%=equipNum[2] %>%" aria-valuenow="<%=equipNum[2] %>" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar" style="width: <%=equipNum[3] %>%" aria-valuenow="<%=equipNum[3] %>" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <h4 class="small font-weight-bold">Depart. of Pediatrics <span class="float-right"><%=equipNum[3] %></span></h4>
+                  <h4 class="small font-weight-bold">Depart. of Pediatrics <span class="float-right"><%=equipNum[4] %></span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: <%=equipNum[3] %>%" aria-valuenow="<%=equipNum[3] %>" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-info" role="progressbar" style="width: <%=equipNum[4] %>%" aria-valuenow="<%=equipNum[4] %>" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <h4 class="small font-weight-bold">Depart. of Psychiatry <span class="float-right"><%=equipNum[4] %></span></h4>
+                  <h4 class="small font-weight-bold">Depart. of Psychiatry <span class="float-right"><%=equipNum[5] %></span></h4>
                   <div class="progress mb-4">
                     <div class="progress-bar bg-success" role="progressbar" style="width: <%=equipNum[5] %>%" aria-valuenow="<%=equipNum[5] %>" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
@@ -277,7 +277,7 @@ if(session.getAttribute("user") == null) {
                   	<br/>• Java, JSP
                   	<br/>// TODO: Add more techniques here.
                   </p>
-                  <a target="_blank" rel="nofollow" href="https://github.com/wzh1998/FYP-Hospital-WebSystem-Location-Tracking">View Detailed Info on Github &rarr;</a>
+                  <a target="_blank" rel="nofollow" href="https://github.com/wzh1998/FYP-Hospital-WebSystem-Location-Tracking">View Details on Github &rarr;</a>
                 </div>
               </div>
 
@@ -324,7 +324,7 @@ if(session.getAttribute("user") == null) {
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="index.html">Logout</a>
+          <a class="btn btn-primary" href="logout.jsp">Logout</a>
         </div>
       </div>
     </div>
