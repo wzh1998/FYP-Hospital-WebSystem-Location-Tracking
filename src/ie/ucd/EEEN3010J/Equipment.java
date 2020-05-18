@@ -53,4 +53,7 @@ public class Equipment {
 	public String getDeptInUse() {
 		return deptInUse;
 	}
+	public boolean isBorrowed() {
+		return (!deptOwns.equals(deptInUse));
+	}
 }

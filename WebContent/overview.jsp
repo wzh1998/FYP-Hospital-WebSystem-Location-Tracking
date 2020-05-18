@@ -71,21 +71,21 @@ if(session.getAttribute("user") == null) {
       </li>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBR" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Borrow / Return</span>
         </a>
         <div id="collapseBR" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <!-- <h6 class="collapse-header">Borrow From Depart.</h6> -->
+            <h6 class="collapse-header">Borrow From Depart.</h6>
             <a class="collapse-item" href="#">Borrow Equipments</a>
             <div class="collapse-divider"></div>
-            <!-- <h6 class="collapse-header">Return To Depart.</h6> -->
+            <h6 class="collapse-header">Return To Depart.</h6>
             <a class="collapse-item" href="#">Return Equipments</a>
           </div>
         </div>
-      </li>
+      </li> -->
       
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -252,9 +252,8 @@ if(session.getAttribute("user") == null) {
                   <br/><br/><strong>Bonus Tasks:</strong>
                   <br/>• When Hospital Equipment is not registering (example power is depleted), the system can track previous locations to allow staff to have a general area for the current location
                   <br/>• Smart alerts for low power, to perhaps avoid Bonus Task, 1.
-                  <br/>• Additional security for specific high-risk equipment, for example, when a staff member searches for the device, they are issued with a code to physically unlock/undock the device and this is logged (perhaps using NFC).
+                  <br/>• Additional security for specific high-risk equipment, for example, when a staff member searches for the device, they are issued with a code to physically unlock/undock the device and this is logged.
                   </p>
-                  <p class="mb-0">//TODO: Write some theoretical knowledge of indoor positioning here</p>
                 </div>
               </div>
             </div>
@@ -273,9 +272,9 @@ if(session.getAttribute("user") == null) {
                   <p>Equipment in hospitals are costly and needed on a regular basis. When equipment fails or is required in another ward/section, it is often used/fixed but never returned to its original location. This issue is compounded when staff shifts end as the new cohort is unaware of the borrowed equipment on the ward/section. This becomes a significant issue when the ward/section for who the equipment was borrowed requires the equipment. This can lead to time spent looking for the equipment, a reduction in the quality of patient care or in the worst case, a negative effect on patient outcomes.</p><p>A solution to track the location of hospital equipment in 3D space in an indoor setting, using a low energy solution would allow staff to log onto a web-based system and track the location of the equipment saving time and perhaps lives. </p>
                   <p>
                   	<strong>Techniques:</strong>
-                  	<br/>• IoT, RFID/Bluetooth/WIFI (not decide yet), ECS cloud hosting (from Alibaba cloud), Mysql
-                  	<br/>• Java, JSP
-                  	<br/>// TODO: Add more techniques here.
+                  	<br/>• IoT, RFID, Alibaba Cloud ECS Server, MySQL.
+                  	<br/>• Java, JSP, Python.
+                  	
                   </p>
                   <a target="_blank" rel="nofollow" href="https://github.com/wzh1998/FYP-Hospital-WebSystem-Location-Tracking">View Details on Github &rarr;</a>
                 </div>

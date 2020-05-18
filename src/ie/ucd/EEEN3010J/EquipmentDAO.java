@@ -81,6 +81,37 @@ public class EquipmentDAO {
 		}
 		return false;
 	}
+	public static boolean borrowEquipment(String equipID, String usrDept) {
+		try {
+			Connection conn = JDBCTool.getConnection();
+			Statement st = conn.createStatement();	
+			int rs = st.executeUpdate("UPDATE Equipments SET DeptInUse='" + usrDept + "' WHERE EquipID='" + equipID + "';");
+			
+			st.close();
+			conn.close();
+			
+			return (rs==0) ? false : true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public static boolean returnEquipment(String equipID, String equipDept) {
+		try {
+			Connection conn = JDBCTool.getConnection();
+			Statement st = conn.createStatement();	
+			int rs = st.executeUpdate("UPDATE Equipments SET DeptInUse='" + equipDept + "' WHERE EquipID='" + equipID + "';");
+			
+			st.close();
+			conn.close();
+			
+			return (rs==0) ? false : true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	public static int[] getEquipNum() {
 		int[] equipNum = {0,0,0,0,0,0,0,0,0,0};
 		try {

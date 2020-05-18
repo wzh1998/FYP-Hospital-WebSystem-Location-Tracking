@@ -75,21 +75,21 @@ if(session.getAttribute("user") == null) {
       </li>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBR" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Borrow / Return</span>
         </a>
         <div id="collapseBR" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <!-- <h6 class="collapse-header">Borrow From Depart.</h6> -->
+            <h6 class="collapse-header">Borrow From Depart.</h6>
             <a class="collapse-item" href="#">Borrow Equipments</a>
             <div class="collapse-divider"></div>
-            <!-- <h6 class="collapse-header">Return To Depart.</h6> -->
+            <h6 class="collapse-header">Return To Depart.</h6>
             <a class="collapse-item" href="#">Return Equipments</a>
           </div>
         </div>
-      </li>
+      </li> -->
       
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -197,11 +197,7 @@ if(session.getAttribute("user") == null) {
             
             
           </p>
-          <p class="mb-4">
-            <strong>Please note:</strong>
-            <br />
-            &bull; When you need to add a new equipment, please first import the ID, type (you can find these information from the label on physical device), then check if the record is shown on the table below. If you find the record with update time '<strong>1970-01-01 08:00:00</strong>' and location '<strong>null</strong>', your equipment is added successfully. After that, you should turn on the physical device such that the time & location will be updated automatically.
-          </p>
+          
       <hr>
           <!-- Add Equipment Button -->
           <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#addEquipment">
@@ -226,8 +222,8 @@ if(session.getAttribute("user") == null) {
                       <th>Equipment Type</th>
                       <th>Update Time</th>
                       <th>Location</th>
-                      <th>Power Remaining</th>
-                      <th>Department Owns</th>
+                      <!-- <th>Power Remaining</th> -->
+                      <th>Is Borrowed</th>
                       <th>Operations</th>
                     </tr>
                   </thead>
@@ -237,8 +233,8 @@ if(session.getAttribute("user") == null) {
                       <th>Equipment Type</th>
                       <th>Update Time</th>
                       <th>Location</th>
-                      <th>Power Remaining</th>
-                      <th>Department Owns</th>
+                      <!-- <th>Power Remaining</th> -->
+                      <th>Is Borrowed</th>
                       <th>Operations</th>
                     </tr>
                   </tfoot>
@@ -326,35 +322,108 @@ if(session.getAttribute("user") == null) {
                       </div>
                     </div>
                     <!-- Delete equipment end (in for loop)-->
+                    <!-- Borrow equipment start (in for loop)-->
+                    <div id="<%="borrowEquipment_"+ equip.getEquipID() %>" class="modal fade">
+                      <div class="modal-dialog modal-login">
+                        <div class="modal-content">
+                          <div class="modal-header">      
+                            <h4 class="modal-title">Equipment Borrowing Request</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          </div>
+                          <div class="modal-body">
+                            <form method="post" action="borrow-equipment.jsp">
+                              <div class="form-group">
+                                <label>Equipment ID:</label>
+                                <input type="text" name="EquipID" class="form-control" readonly="true" value="<%=equip.getEquipID() %>" placeholder="<%=equip.getEquipID() %>">
+                              </div>
+                              <div class="form-group">
+                                <label>Equipment Type:</label>
+                                <input type="text" name="EquipType" class="form-control" readonly="true" value="<%=equip.getEquipType() %>" placeholder="<%=equip.getEquipType() %>">
+                              </div>
+                              <div class="form-group">
+                                <label>Equipment Belongs To Department:</label>
+                                <input type="text" name="EquipDept" class="form-control" readonly="true" value="<%=equip.getDeptOwns() %>" placeholder="<%=equip.getDeptOwns() %>">
+                              </div>
+                              <div class="form-group">
+                                <label>You Are In Department:</label>
+                                
+                                <input type="text" name="UsrDept" class="form-control" readonly="true" value="<%=u==null ? "null" : u.getusrDept() %>" placeholder="<%=u==null ? "null" : u.getusrDept() %>">
+                              </div>
+                              <div>
+                                You are requesting to borrow an equipment from other departments. Please remember to return them in this page once you finishes using the equipment.
+                              </div>
+                              <hr>
+                              <div class="form-group"><input type="submit" value="I confirm borrowing this equipment" class="btn btn-primary btn-block btn-lg" style="background:#FFD700; color:#FFF">
+                              </div>
+                              <div class="clearfix"></div>
+                            </form>       
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Borrow equipment end (in for loop)-->
+                    <!-- Return equipment start (in for loop)-->
+                    <div id="<%="returnEquipment_"+ equip.getEquipID() %>" class="modal fade">
+                      <div class="modal-dialog modal-login">
+                        <div class="modal-content">
+                          <div class="modal-header">      
+                            <h4 class="modal-title">Equipment Borrowing Request</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          </div>
+                          <div class="modal-body">
+                            <form method="post" action="borrow-equipment.jsp">
+                              <div class="form-group">
+                                <label>Equipment ID:</label>
+                                <input type="text" name="EquipID" class="form-control" readonly="true" value="<%=equip.getEquipID() %>" placeholder="<%=equip.getEquipID() %>">
+                              </div>
+                              <div class="form-group">
+                                <label>Equipment Type:</label>
+                                <input type="text" name="EquipType" class="form-control" readonly="true" value="<%=equip.getEquipType() %>" placeholder="<%=equip.getEquipType() %>">
+                              </div>
+                              <div class="form-group">
+                                <label>Equipment Will Be Returned To Department:</label>
+                                <input type="text" name="EquipDept" class="form-control" readonly="true" value="<%=equip.getDeptOwns() %>" placeholder="<%=equip.getDeptOwns() %>">
+                              </div>
+                              <div class="form-group">
+                                <label>You Are In Department:</label>
+                                
+                                <input type="text" name="UsrDept" class="form-control" readonly="true" value="<%=u==null ? "null" : u.getusrDept() %>" placeholder="<%=u==null ? "null" : u.getusrDept() %>">
+                              </div>
+                              <div>
+                              You are returning an equipment that you had borrowed earlier, please confirm the above information before you click the button.
+                              
+                              </div>
+                              <hr>
+                              <div class="form-group"><input type="submit" value="I confirm borrowing this equipment" class="btn btn-primary btn-block btn-lg" style="background:#3CB371; color:#FFF">
+                              </div>
+                              <div class="clearfix"></div>
+                            </form>       
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Return equipment end (in for loop)-->
+                    
                     <tr>
                       <td><%=equip.getEquipID() %></td>
                       <td><%=equip.getEquipType() %></td>
                       <td><%=equip.getUpdateTime() %></td>
                       <td><%=equip.getLocation() %></td>
-                      <td>
-                        <!-- Java code start. Determine whether the equipment can be lent base on their original owner and department in use. -->
-                        <%
-                          if(equip.getPower() > 20) {
-                        %>
-                        <a href="#" class="btn btn-success btn-circle btn-sm">
-                          <!-- <i class="fas fa-check"></i> -->
-                          <%=equip.getPower() %>
-                        </a>
-                        <%
-                          } else {
-                        %>
-                        <a href="#" class="btn btn-warning btn-circle btn-sm">
-                          <!-- <i class="fas fa-exclamation-triangle"></i> -->
-                          <%=equip.getPower() %>
-                        </a>
-                        <%}%>
-                        <!-- Java code end here -->
-                      </td>
-                      <td><%=equip.getDeptOwns() %></td>
+                      <td><%=equip.isBorrowed()?"Yes":"No" %></td>
                       <td>
                         <a href="#" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="<%="#EquipmentInfo_"+ equip.getEquipID() %>">
                           <i class="fas fa-info-circle"></i>
                         </a>
+                        <%if(!equip.isBorrowed()) { %>
+                          <a href="#" class="btn btn-warning btn-circle btn-sm" data-toggle="modal" data-target="<%="#borrowEquipment_"+ equip.getEquipID() %>">
+                            B
+                          </a>
+                        <%} else if((u!=null) && (equip.getDeptInUse().equals(u.getusrDept()))) { %>
+                        
+                          <a href="#" class="btn btn-success btn-circle btn-sm" data-toggle="modal" data-target="<%="#returnEquipment_"+ equip.getEquipID() %>">
+                            R
+                          </a>
+                        <%}%>
                         <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="<%="#deleteEquipment_"+ equip.getEquipID() %>">
                           <i class="fas fa-trash"></i>
                         </a>
@@ -501,5 +570,3 @@ if(session.getAttribute("user") == null) {
 
 </body>
 </html>
-
-

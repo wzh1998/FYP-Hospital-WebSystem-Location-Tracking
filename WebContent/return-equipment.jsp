@@ -8,11 +8,11 @@
 <meta charset="UTF-8">
 <script>
 function alertSuccess(){
-	alert("Equipment has been lent successfully!");
+	alert("Equipment has been returned successfully!");
 	window.document.location.href="equipment-list.jsp";
 }
 function alertFailed(){
-	alert("Unexpected error happened while borrowing equipment, try again and if still does not work, contact the system admin.");
+	alert("Unexpected error happened while returning equipment, try again and if still does not work, contact the system admin.");
 	window.document.location.href="equipment-list.jsp";
 }
 </script>
@@ -25,9 +25,9 @@ function alertFailed(){
 }  */
 
 String EquipID = request.getParameter("EquipID");
-String UsrDept = request.getParameter("UsrDept");
+String UsrDept = request.getParameter("EquipDept");
 
-if(EquipmentDAO.borrowEquipment(EquipID, UsrDept)) %> <script type="text/javascript"> alertSuccess();</script>
+if(EquipmentDAO.returnEquipment(EquipID, EquipDept)) %> <script type="text/javascript"> alertSuccess();</script>
 <% else %> <script type="text/javascript">alertFailed();</script>
 </body>
 </html>
