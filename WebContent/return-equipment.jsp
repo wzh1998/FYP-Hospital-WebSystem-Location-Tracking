@@ -25,7 +25,7 @@ function alertFailed(){
 }  */
 
 String EquipID = request.getParameter("EquipID");
-String UsrDept = request.getParameter("EquipDept");
+String EquipDept = request.getParameter("EquipDept");
 
 if(EquipmentDAO.returnEquipment(EquipID, EquipDept)) %> <script type="text/javascript"> alertSuccess();</script>
 <% else %> <script type="text/javascript">alertFailed();</script>

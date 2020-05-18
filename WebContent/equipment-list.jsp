@@ -371,7 +371,7 @@ if(session.getAttribute("user") == null) {
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                           </div>
                           <div class="modal-body">
-                            <form method="post" action="borrow-equipment.jsp">
+                            <form method="post" action="return-equipment.jsp">
                               <div class="form-group">
                                 <label>Equipment ID:</label>
                                 <input type="text" name="EquipID" class="form-control" readonly="true" value="<%=equip.getEquipID() %>" placeholder="<%=equip.getEquipID() %>">
@@ -394,7 +394,7 @@ if(session.getAttribute("user") == null) {
                               
                               </div>
                               <hr>
-                              <div class="form-group"><input type="submit" value="I confirm borrowing this equipment" class="btn btn-primary btn-block btn-lg" style="background:#3CB371; color:#FFF">
+                              <div class="form-group"><input type="submit" value="I confirm returning this equipment" class="btn btn-primary btn-block btn-lg" style="background:#3CB371; color:#FFF">
                               </div>
                               <div class="clearfix"></div>
                             </form>       
