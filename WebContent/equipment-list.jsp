@@ -367,7 +367,7 @@ if(session.getAttribute("user") == null) {
                       <div class="modal-dialog modal-login">
                         <div class="modal-content">
                           <div class="modal-header">      
-                            <h4 class="modal-title">Equipment Borrowing Request</h4>
+                            <h4 class="modal-title">Equipment Returning Request</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                           </div>
                           <div class="modal-body">
